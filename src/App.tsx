@@ -1,5 +1,11 @@
-function App() {
-  return <div className=''>Hello Vite + React!</div>;
-}
+import { BrowserRouter } from "react-router";
 
-export default App;
+import AppRoutes from "./routes/Routes";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
