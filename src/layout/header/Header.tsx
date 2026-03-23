@@ -1,51 +1,84 @@
 import { useState } from "react";
 
-import { Menu, ShoppingCart, User, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import { Link } from "react-router";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Navbar, { NavLinks } from "../navbar/Navbar";
-import { Button } from "@/components/ui/button";
+import {
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+  Sheet,
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className='bg-indigo-700 text-white shadow-md sticky top-0 z-50'>
-      <div className='max-w-7xl mx-auto px-4 h-16 flex items-center justify-between'>
-        <Link to='/' className='text-xl font-bold tracking-tight'>
-          IziVendas
-        </Link>
-
-        <Navbar />
-
-        <div className='flex items-center gap-2'>
-          <Button variant='ghost' size='icon' className='text-white hover:bg-indigo-600' asChild>
-            <Link to='/profile'>
-              <User className='h-5 w-5' />
+    <header className="bg-brand text-white shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-8">
+          <Link to="/" className="text-xl font-bold tracking-tight">
+            <img
+              src="/src/assets/logoapp.png"
+              alt="Izi Vendas Logo"
+              className="md:w-32 w-24"
+            />
+          </Link>
+          <Navbar />
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="flex justify-center items-center gap-1.5">
+            <Link
+              to="/profile"
+              className="text-white hover:opacity-50 p-1 rounded-md"
+            >
+              <User className="h-5 w-5" />
             </Link>
-          </Button>
-          <Button variant='ghost' size='icon' className='text-white hover:bg-indigo-600'>
-            <ShoppingCart className='h-5 w-5' />
-          </Button>
-
+            <Link
+              to="/register"
+              className={cn(
+                "text-sm font-light text-white hover:opacity-50 transition-opacity duration-200 py-2",
+              )}
+            >
+              Cadastrar
+            </Link>
+            {" |"}
+            <button
+              onClick={() => alert("LOGIN")}
+              className={cn(
+                "cursor-pointer text-sm font-light text-white hover:opacity-50 transition-opacity duration-200 py-2",
+              )}
+            >
+              Entrar
+            </button>
+          </div>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant='ghost' size='icon' className='md:hidden text-white hover:bg-indigo-600'>
-                <Menu className='h-5 w-5' />
-              </Button>
+              <button className="text-white hover:opacity-50 p-1 rounded-md cursor-pointer md:hidden">
+                <Menu className="h-5 w-5" />
+              </button>
             </SheetTrigger>
-            <SheetContent side='left' className='w-72 bg-indigo-800 text-white border-none'>
-              <SheetHeader className='mb-6'>
-                <SheetTitle className='text-white text-xl font-bold'>IziVendas</SheetTitle>
+            <SheetContent
+              side="left"
+              showCloseButton={false}
+              className="w-72 bg-main text-white border-none p-6"
+            >
+              <SheetHeader className="mb-0 p-0">
+                <SheetTitle className="text-white text-xl font-bold">
+                  Izi Vendas
+                </SheetTitle>
               </SheetHeader>
+
               <button
                 onClick={() => setOpen(false)}
-                className='absolute top-4 right-4 text-white hover:text-indigo-300'
+                className="absolute top-4 right-4 text-white hover:opacity-50 p-1 rounded-md cursor-pointer"
               >
-                <X className='h-5 w-5' />
+                <X className="h-5 w-5" />
               </button>
-              <nav className='flex flex-col gap-5 mt-4'>
+              <nav className="flex flex-col mt-4">
                 <NavLinks onNavigate={() => setOpen(false)} />
               </nav>
             </SheetContent>

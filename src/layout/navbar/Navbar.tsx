@@ -1,21 +1,23 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
-export const navLinks = [
-  { label: "Início", to: "/" },
-  { label: "Produtos", to: "/products" },
-  { label: "Categorias", to: "/categories" },
-  { label: "Ofertas", to: "/deals" }
-];
+import { navMenuItems } from "./navMenuItems";
+import { cn } from "@/lib/utils";
 
 export function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+  const { pathname } = useLocation();
+  const isActive = (to: string) => pathname === to;
+
   return (
     <>
-      {navLinks.map(link => (
+      {navMenuItems.map((link) => (
         <Link
           key={link.to}
           to={link.to}
           onClick={onNavigate}
-          className='text-sm font-medium hover:text-indigo-300 transition-colors'
+          className={cn(
+            "text-sm font-light text-white hover:opacity-50 transition-opacity duration-200 py-2",
+            isActive(link.to) ? "border-b" : "border-transparent",
+          )}
         >
           {link.label}
         </Link>
@@ -26,7 +28,7 @@ export function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 
 export default function Navbar() {
   return (
-    <nav className='hidden md:flex items-center gap-6'>
+    <nav className="hidden md:flex items-center gap-6 ">
       <NavLinks />
     </nav>
   );
