@@ -1,13 +1,19 @@
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router";
-import Layout from "./layout/Layout";
+
+import { AuthProvider } from "./context/useAuthContext";
 import AppRoutes from "./routes/Routes";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <AppRoutes />
-      </Layout>
-    </BrowserRouter>
+    <AuthProvider>
+      <TooltipProvider>
+        <BrowserRouter>
+          <AppRoutes />
+          <ToastContainer />
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   );
 }
