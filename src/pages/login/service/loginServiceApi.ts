@@ -110,3 +110,26 @@ export const handleSignOut = async () => {
     return false;
   }
 };
+
+export const handleForgotPassword = async (email: string) => {
+  try {
+    const { error } = await supabase.auth.resetPasswordForEmail(email);
+
+    if (error) {
+      toast.error("Erro ao enviar recuperação de senha: " + error.message);
+      return false;
+    }
+
+    toast.success("Enviamos as instruções de recuperação para o seu email");
+    return true;
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Erro inesperado ao recuperar senha";
+
+    toast.error("Erro ao enviar recuperação de senha: " + errorMessage);
+
+    return false;
+  }
+};
