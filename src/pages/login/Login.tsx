@@ -43,7 +43,7 @@ export default function Login() {
               />
             </div>
             <div>
-              <p className="text-center text-xs text-gray-600 mb-6">
+              <p className="text-center text-xs text-gray-600">
                 Faça login para acessar sua conta e gerenciar suas vendas de
                 forma fácil e eficiente.
               </p>

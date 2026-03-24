@@ -68,7 +68,7 @@ export default function Register() {
               />
             </div>
             <div>
-              <p className="text-center text-sm text-gray-600 mb-6">
+              <p className="text-center text-sm text-gray-600">
                 Crie sua conta para começar a organizar clientes, pedidos e
                 vendas em um só lugar.
               </p>

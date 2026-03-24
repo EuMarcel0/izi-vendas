@@ -33,7 +33,7 @@ export default function ForgotPassword() {
               />
             </div>
             <div>
-              <p className="text-center text-xs text-gray-600 mb-6">
+              <p className="text-center text-xs text-gray-600">
                 Informe seu email para receber as instruções de redefinição de
                 senha.
               </p>
