@@ -9,7 +9,7 @@ export interface CustomTextAreaProps extends React.ComponentProps<
   label?: string;
   errorMessage?: string;
   isError?: boolean;
-  externalClassName?: string;
+  className?: string;
 }
 
 export default function AppTextArea({
@@ -17,7 +17,7 @@ export default function AppTextArea({
   isError,
   label,
   errorMessage,
-  externalClassName = "",
+  className = "",
   ...restProps
 }: CustomTextAreaProps) {
   return (
@@ -41,11 +41,11 @@ export default function AppTextArea({
       <Textarea
         name={name}
         className={cn(
-          "border border-gray-300 bg-tw-bg-light-secondary dark:bg-tw-bg-dark-secondary text-xs rounded",
+          "border border-gray-300 bg-tw-bg-light-secondary/60 dark:bg-tw-bg-dark-secondary/60 text-xs rounded",
           isError
             ? "dark:border-red-500/20 border-red-500"
-            : "border-slate-500/20 focus:dark:border-gray-500/20 focus:border-slate-500/20 dark:border-gray-500/20",
-          externalClassName,
+            : "border-slate-500/20 focus:dark:border-gray-500/50 focus:border-slate-500/50 dark:border-gray-500/20",
+          className,
         )}
         {...restProps}
       />

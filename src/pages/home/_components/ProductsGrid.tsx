@@ -1,5 +1,5 @@
-import ProductCard from "@/pages/home/_components/ProductCard";
 import type { HomeProduct } from "@/pages/home/service/productsMock";
+import ProductCard from "@/pages/home/_components/ProductCard";
 
 type ProductsGridProps = {
   products: HomeProduct[];

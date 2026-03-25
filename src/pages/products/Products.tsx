@@ -3,9 +3,7 @@ import { productsMock } from "@/pages/products/service/productsMock";
 
 export default function Products() {
   return (
-    <section className="space-y-6">
-      <h1 className="text-2xl font-semibold text-foreground">Produtos</h1>
-
+    <section className="p-5">
       <ProductsDataGrid initialData={productsMock} />
     </section>
   );

@@ -1,7 +1,7 @@
 import { ShoppingCartSimple, Star } from "@phosphor-icons/react";
 
-import { Button } from "@/components/ui/button";
 import type { HomeProduct } from "@/pages/home/service/productsMock";
+import { Button } from "@/components/ui/button";
 
 type ProductCardProps = {
   product: HomeProduct;

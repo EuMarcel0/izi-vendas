@@ -11,6 +11,14 @@ type AppButtonProps = React.ComponentProps<"button"> & {
   loadingText?: string;
   disabled?: boolean;
   fullWidth?: boolean;
+  variant?:
+    | "link"
+    | "default"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "destructive"
+    | null;
 };
 
 export default function AppButton({
@@ -20,17 +28,19 @@ export default function AppButton({
   loadingText,
   disabled = false,
   fullWidth = false,
+  variant = "default",
   ...restProps
 }: AppButtonProps) {
   return (
     <Button
-      {...restProps}
       className={cn(
         `flex justify-center items-center gap-2`,
         fullWidth && "w-full",
         restProps.className,
       )}
       disabled={isLoading || disabled}
+      variant={variant}
+      {...restProps}
     >
       <div className="flex justify-center items-center gap-2 w-full">
         {icon && !isLoading && icon}
