@@ -4,11 +4,11 @@ import { Form, Formik } from "formik";
 import { Link } from "react-router";
 import * as yup from "yup";
 
+import { useAuthContext } from "@/context/useAuthContext";
 import { Separator } from "@/components/ui/separator";
 import AppButton from "@/layout/ui/button/AppButton";
 import { Checkbox } from "@/components/ui/checkbox";
 import AppInput from "@/layout/ui/inputs/AppInput";
-import { useAuthContext } from "@/context/useAuthContext";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email é obrigatório"),

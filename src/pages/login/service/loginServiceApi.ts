@@ -38,9 +38,10 @@ export const handleSignUp = async (payloadData: TSignUpData) => {
     }
 
     const { error: insertError } = await supabase.from("users").insert({
-      id: data.user?.id,
+      user_id: data.user?.id,
       full_name: payloadData.fullName,
       phone: payloadData.phone,
+      email: payloadData.email,
       date_birth: payloadData.dateOfBirth
         ? new Date(payloadData.dateOfBirth)
         : null,

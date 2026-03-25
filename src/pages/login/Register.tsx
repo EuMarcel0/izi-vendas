@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Form, Formik } from "formik";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import * as yup from "yup";
 
 import { removeAllStringMasks } from "@/utils/removeAllStringMasks";
@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import AppButton from "@/layout/ui/button/AppButton";
 import { Checkbox } from "@/components/ui/checkbox";
 import AppInput from "@/layout/ui/inputs/AppInput";
+import { toast } from "react-toastify";
 
 const validationSchema = yup.object().shape({
   fullName: yup.string().required("Nome completo é obrigatório"),
@@ -35,6 +36,7 @@ const validationSchema = yup.object().shape({
 });
 
 export default function Register() {
+  const navigate = useNavigate();
   const { handleRegister, isLoading } = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -51,10 +53,14 @@ export default function Register() {
       }}
       validationSchema={validationSchema}
       onSubmit={async (values) => {
-        await handleRegister({
+        const result = await handleRegister({
           ...values,
           phone: String(removeAllStringMasks({ value: values.phone }) ?? ""),
         });
+        if (result) {
+          toast.success("Conta criada com sucesso! Faça login para continuar.");
+          navigate("/auth/login");
+        }
       }}
     >
       {(formik) => (

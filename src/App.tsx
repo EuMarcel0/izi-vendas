@@ -11,7 +11,11 @@ export default function App() {
       <TooltipProvider>
         <BrowserRouter>
           <AppRoutes />
-          <ToastContainer />
+          <ToastContainer
+            style={{
+              fontSize: "12px",
+            }}
+          />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

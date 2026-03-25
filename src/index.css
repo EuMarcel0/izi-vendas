@@ -101,7 +101,7 @@
   --secondary-foreground: oklch(0.36 0.22 272);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.6 0.2 295);
+  --accent: oklch(48.336% 0.23864 282.771);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.88 0.04 272);
@@ -115,7 +115,7 @@
   --brand-subtle-foreground: oklch(0.36 0.22 272);
 
   /* Violet — violeta suave, secundária */
-  --violet: oklch(0.6 0.2 295);
+  --violet: oklch(0.44 0.26 272);
   --violet-foreground: oklch(0.985 0 0);
 
   /* Rose — rosa quente, destaque/CTA */

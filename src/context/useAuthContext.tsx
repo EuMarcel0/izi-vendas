@@ -23,24 +23,26 @@ function useProvideAuth() {
   const session = useAuthStore((state) => state.session);
   const loggedUser = useAuthStore((state) => state.loggedUser);
   const isLoading = useAuthStore((state) => state.isLoading);
+  const isInitializing = useAuthStore((state) => state.isInitializing);
   const setAuthData = useAuthStore((state) => state.setAuthData);
   const clearAuthData = useAuthStore((state) => state.clearAuthData);
   const setIsLoading = useAuthStore((state) => state.setIsLoading);
+  const setIsInitializing = useAuthStore((state) => state.setIsInitializing);
 
   const refreshSession = useCallback(async () => {
-    setIsLoading(true);
+    setIsInitializing(true);
 
     const { data, error } = await supabase.auth.getSession();
 
     if (error) {
       clearAuthData();
-      setIsLoading(false);
+      setIsInitializing(false);
       return;
     }
 
     setAuthData(data.session, data.session?.user ?? null);
-    setIsLoading(false);
-  }, [clearAuthData, setAuthData, setIsLoading]);
+    setIsInitializing(false);
+  }, [clearAuthData, setAuthData, setIsInitializing]);
 
   const handleLogin = async (email: string, password: string) => {
     setIsLoading(true);
@@ -96,19 +98,20 @@ function useProvideAuth() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, nextSession) => {
       setAuthData(nextSession, nextSession?.user ?? null);
-      setIsLoading(false);
+      setIsInitializing(false);
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [refreshSession, setAuthData, setIsLoading]);
+  }, [refreshSession, setAuthData, setIsInitializing]);
 
   return {
     session,
     loggedUser,
     isAuthenticated: !!session,
     isLoading,
+    isInitializing,
     handleLogin,
     handleRegister,
     handleLogout,
